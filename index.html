@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="refresh" content="3;url=https://blog.solodev.ru?info_source=infolink">
+<title>Переход...</title>
+<style>
+  :root {
+    --miku: #39c5bb;
+    --miku-dark: #1a7f78;
+    --miku-glow: #7ffff0;
+    --bg-1: #0a0e17;
+    --bg-2: #131a2b;
+    --win-gray: #c0c0c0;
+    --win-dark: #808080;
+    --win-darker: #404040;
+    --win-light: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Tahoma", "MS Sans Serif", "Segoe UI", sans-serif;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(57,197,187,0.18), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(127,255,240,0.12), transparent 50%),
+      linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: #e6fffd;
+    text-align: center;
+    padding: 24px;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Плавающие неоновые блики */
+  body::before,
+  body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  body::before {
+    width: 340px; height: 340px;
+    background: var(--miku);
+    top: -80px; left: -80px;
+    animation: float 9s ease-in-out infinite;
+  }
+  body::after {
+    width: 280px; height: 280px;
+    background: var(--miku-glow);
+    bottom: -60px; right: -60px;
+    animation: float 11s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 20px); }
+  }
+
+  .card {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    width: 100%;
+    padding: 32px 28px;
+    border: 2px solid var(--miku);
+    border-radius: 4px;
+    background: rgba(10, 14, 23, 0.72);
+    box-shadow:
+      0 0 0 2px rgba(57,197,187,0.25),
+      0 0 30px rgba(57,197,187,0.35),
+      inset 0 0 40px rgba(57,197,187,0.08);
+    backdrop-filter: blur(6px);
+  }
+
+  h1 {
+    margin: 0 0 16px;
+    font-size: clamp(1.2rem, 4vw, 1.9rem);
+    font-weight: 700;
+    color: var(--miku-glow);
+    text-shadow: 0 0 12px rgba(57,197,187,0.8), 0 0 24px rgba(57,197,187,0.4);
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0 0 28px;
+    font-size: clamp(0.9rem, 2.6vw, 1.05rem);
+    color: #b8e8e4;
+    line-height: 1.55;
+  }
+
+  /* Кнопка в стиле Windows 98 */
+  .win98-btn {
+    display: inline-block;
+    padding: 10px 36px;
+    font-family: "Tahoma", "MS Sans Serif", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+    background: var(--win-gray);
+    border: none;
+    cursor: pointer;
+    /* Классическая 3D-рамка Win98 */
+    box-shadow:
+      inset -2px -2px 0 var(--win-darker),
+      inset 2px 2px 0 var(--win-light),
+      inset -4px -4px 0 var(--win-dark),
+      inset 4px 4px 0 #dfdfdf,
+      0 0 18px rgba(57,197,187,0.6);
+    transition: transform 0.05s ease, box-shadow 0.05s ease;
+    user-select: none;
+    position: relative;
+  }
+
+  .win98-btn:hover {
+    background: #d4d4d4;
+    box-shadow:
+      inset -2px -2px 0 var(--win-darker),
+      inset 2px 2px 0 var(--win-light),
+      inset -4px -4px 0 var(--win-dark),
+      inset 4px 4px 0 #ffffff,
+      0 0 26px rgba(57,197,187,0.9);
+  }
+
+  .win98-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow:
+      inset 2px 2px 0 var(--win-darker),
+      inset -2px -2px 0 var(--win-light),
+      inset 4px 4px 0 var(--win-dark),
+      inset -4px -4px 0 #dfdfdf,
+      0 0 12px rgba(57,197,187,0.6);
+  }
+
+  .win98-btn:focus-visible {
+    outline: 2px dotted #000;
+    outline-offset: -6px;
+  }
+
+  .hint {
+    margin-top: 22px;
+    font-size: 0.8rem;
+    color: rgba(184,232,228,0.55);
+    letter-spacing: 0.4px;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1 id="title">Вы переходите по ссылке...</h1>
+    <p id="subtext">Если в течении 3 секунд пернеход не сработает, просто нажмите на кнопку ниже.</p>
+    <a id="goBtn" class="win98-btn" href="https://example.com" rel="noreferrer noopener">Перейти на сайт <3</a>
+    <div class="hint" id="hint">Перенаправление через 2 секунды…</div>
+  </main>
+
+<script>
+(function () {
+  "use strict";
+
+  // Значения по умолчанию
+  var DEFAULT_URL     = "https://blog.solodev.ru/?info_source=infolink";
+  var DEFAULT_TITLE   = "Вы переходите по ссылке...";
+  var DEFAULT_SUBTEXT = "Если в течении 3 секунд пернеход не сработает, просто нажмите на кнопку ниже.";
+  var REDIRECT_DELAY  = 2000; // мс
+
+  var params = new URLSearchParams(window.location.search);
+
+  var link    = params.get("link")    || DEFAULT_URL;
+  var title   = params.get("title")   || DEFAULT_TITLE;
+  var subtext = params.get("subtext") || DEFAULT_SUBTEXT;
+
+  // Базовая валидация ссылки: разрешаем http/https и относительные пути
+  function sanitizeUrl(url) {
+    try {
+      var u = new URL(url, window.location.href);
+      if (u.protocol === "http:" || u.protocol === "https:") {
+        return u.href;
+      }
+    } catch (e) { /* ignore */ }
+    return DEFAULT_URL;
+  }
+
+  var safeLink = sanitizeUrl(link);
+
+  // Обновляем содержимое страницы
+  var titleEl   = document.getElementById("title");
+  var subtextEl = document.getElementById("subtext");
+  var btnEl     = document.getElementById("goBtn");
+
+  titleEl.textContent   = title;
+  subtextEl.textContent = subtext;
+  btnEl.setAttribute("href", safeLink);
+  document.title = title;
+
+  // Обновляем meta-refresh на всякий случай (если JS успел отработать)
+  var meta = document.querySelector('meta[http-equiv="refresh"]');
+  if (meta) {
+    meta.setAttribute("content", "2;url=" + safeLink);
+  }
+
+  // JS-редирект через 2 секунды
+  setTimeout(function () {
+    window.location.replace(safeLink);
+  }, REDIRECT_DELAY);
+})();
+</script>
+</body>
+</html>
